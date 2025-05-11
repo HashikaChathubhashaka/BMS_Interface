@@ -1,0 +1,10 @@
+{
+    "files": [
+        "mainwindow.py",
+        "form.ui",
+        "SerialReader.py",
+        "style.qss",
+        "style_dark.qss",
+        "DataRecorder.py"
+    ]
+}
