@@ -19,15 +19,15 @@ from PySide6.QtGui import (QAction, QBrush, QColor, QConicalGradient,
 from PySide6.QtWidgets import (QAbstractItemView, QApplication, QComboBox, QDoubleSpinBox,
     QFrame, QGridLayout, QGroupBox, QHBoxLayout,
     QLabel, QLayout, QListView, QMainWindow,
-    QMenu, QMenuBar, QProgressBar, QPushButton,
-    QRadioButton, QSizePolicy, QSpacerItem, QStatusBar,
-    QTabWidget, QVBoxLayout, QWidget)
+    QMenu, QMenuBar, QPushButton, QRadioButton,
+    QSizePolicy, QSpacerItem, QStatusBar, QTabWidget,
+    QVBoxLayout, QWidget)
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(1035, 609)
+        MainWindow.resize(1035, 621)
         sizePolicy = QSizePolicy(QSizePolicy.Policy.Minimum, QSizePolicy.Policy.MinimumExpanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -36,15 +36,15 @@ class Ui_MainWindow(object):
         MainWindow.setLayoutDirection(Qt.LayoutDirection.LeftToRight)
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
-        self.verticalLayout_2 = QVBoxLayout(self.centralwidget)
-        self.verticalLayout_2.setObjectName(u"verticalLayout_2")
+        self.verticalLayout_12 = QVBoxLayout(self.centralwidget)
+        self.verticalLayout_12.setObjectName(u"verticalLayout_12")
         self.line = QFrame(self.centralwidget)
         self.line.setObjectName(u"line")
         self.line.setLineWidth(10)
         self.line.setFrameShape(QFrame.Shape.HLine)
         self.line.setFrameShadow(QFrame.Shadow.Sunken)
 
-        self.verticalLayout_2.addWidget(self.line)
+        self.verticalLayout_12.addWidget(self.line)
 
         self.tabWidget = QTabWidget(self.centralwidget)
         self.tabWidget.setObjectName(u"tabWidget")
@@ -201,6 +201,21 @@ class Ui_MainWindow(object):
 
         self.BatteryTemp.addLayout(self.BT6)
 
+        self.ReadingsRecoding = QVBoxLayout()
+        self.ReadingsRecoding.setObjectName(u"ReadingsRecoding")
+        self.StartRecordTemps = QPushButton(self.Temperature)
+        self.StartRecordTemps.setObjectName(u"StartRecordTemps")
+
+        self.ReadingsRecoding.addWidget(self.StartRecordTemps)
+
+        self.StopRecordTemps = QPushButton(self.Temperature)
+        self.StopRecordTemps.setObjectName(u"StopRecordTemps")
+
+        self.ReadingsRecoding.addWidget(self.StopRecordTemps)
+
+
+        self.BatteryTemp.addLayout(self.ReadingsRecoding)
+
         self.BatteryTemp.setStretch(1, 2)
         self.BatteryTemp.setStretch(2, 2)
         self.BatteryTemp.setStretch(3, 2)
@@ -213,172 +228,33 @@ class Ui_MainWindow(object):
 
         self.Main = QGridLayout()
         self.Main.setObjectName(u"Main")
-        self.BatteryHealthLevel = QFrame(self.LiveStatus)
-        self.BatteryHealthLevel.setObjectName(u"BatteryHealthLevel")
-        self.BatteryHealthLevel.setFrameShape(QFrame.Shape.Box)
-        self.HealthLevel = QVBoxLayout(self.BatteryHealthLevel)
-        self.HealthLevel.setObjectName(u"HealthLevel")
-        self.HealthLevel.setContentsMargins(10, -1, 10, -1)
-        self.HealthBar = QProgressBar(self.BatteryHealthLevel)
-        self.HealthBar.setObjectName(u"HealthBar")
-        self.HealthBar.setValue(24)
-        self.HealthBar.setTextVisible(False)
-
-        self.HealthLevel.addWidget(self.HealthBar)
-
-        self.BatteryHealth = QHBoxLayout()
-        self.BatteryHealth.setObjectName(u"BatteryHealth")
-        self.BatteryHealthText = QLabel(self.BatteryHealthLevel)
-        self.BatteryHealthText.setObjectName(u"BatteryHealthText")
-        self.BatteryHealthText.setFont(font1)
-        self.BatteryHealthText.setAlignment(Qt.AlignmentFlag.AlignRight|Qt.AlignmentFlag.AlignTrailing|Qt.AlignmentFlag.AlignVCenter)
-
-        self.BatteryHealth.addWidget(self.BatteryHealthText)
-
-        self.BatteryHealthLabel = QLabel(self.BatteryHealthLevel)
-        self.BatteryHealthLabel.setObjectName(u"BatteryHealthLabel")
-        self.BatteryHealthLabel.setFont(font2)
-        self.BatteryHealthLabel.setAlignment(Qt.AlignmentFlag.AlignLeading|Qt.AlignmentFlag.AlignLeft|Qt.AlignmentFlag.AlignVCenter)
-
-        self.BatteryHealth.addWidget(self.BatteryHealthLabel)
-
-        self.BatteryHealth.setStretch(0, 2)
-        self.BatteryHealth.setStretch(1, 1)
-
-        self.HealthLevel.addLayout(self.BatteryHealth)
-
-
-        self.Main.addWidget(self.BatteryHealthLevel, 2, 0, 1, 1)
-
-        self.RemainCapacity = QHBoxLayout()
-        self.RemainCapacity.setObjectName(u"RemainCapacity")
-        self.RemainCapacityText = QLabel(self.LiveStatus)
-        self.RemainCapacityText.setObjectName(u"RemainCapacityText")
-        self.RemainCapacityText.setFont(font1)
-        self.RemainCapacityText.setAlignment(Qt.AlignmentFlag.AlignCenter)
-
-        self.RemainCapacity.addWidget(self.RemainCapacityText)
-
-        self.RemainCapacityLabel = QLabel(self.LiveStatus)
-        self.RemainCapacityLabel.setObjectName(u"RemainCapacityLabel")
-        self.RemainCapacityLabel.setFont(font2)
-        self.RemainCapacityLabel.setAlignment(Qt.AlignmentFlag.AlignLeading|Qt.AlignmentFlag.AlignLeft|Qt.AlignmentFlag.AlignVCenter)
-
-        self.RemainCapacity.addWidget(self.RemainCapacityLabel)
-
-        self.RemainCapacity.setStretch(0, 3)
-        self.RemainCapacity.setStretch(1, 1)
-
-        self.Main.addLayout(self.RemainCapacity, 4, 1, 1, 1)
-
-        self.stopButton = QPushButton(self.LiveStatus)
-        self.stopButton.setObjectName(u"stopButton")
-        self.stopButton.setMinimumSize(QSize(0, 50))
-        font3 = QFont()
-        font3.setFamilies([u"Segoe UI"])
-        font3.setPointSize(14)
-        font3.setBold(True)
-        self.stopButton.setFont(font3)
-
-        self.Main.addWidget(self.stopButton, 0, 1, 1, 1)
-
-        self.AveCellVolt = QHBoxLayout()
-        self.AveCellVolt.setObjectName(u"AveCellVolt")
-        self.AveCellVoltText = QLabel(self.LiveStatus)
-        self.AveCellVoltText.setObjectName(u"AveCellVoltText")
-        self.AveCellVoltText.setFont(font1)
-        self.AveCellVoltText.setAlignment(Qt.AlignmentFlag.AlignCenter)
-
-        self.AveCellVolt.addWidget(self.AveCellVoltText)
-
-        self.AveCellVoltLabel = QLabel(self.LiveStatus)
-        self.AveCellVoltLabel.setObjectName(u"AveCellVoltLabel")
-        self.AveCellVoltLabel.setFont(font2)
-        self.AveCellVoltLabel.setAlignment(Qt.AlignmentFlag.AlignLeading|Qt.AlignmentFlag.AlignLeft|Qt.AlignmentFlag.AlignVCenter)
-
-        self.AveCellVolt.addWidget(self.AveCellVoltLabel)
-
-        self.AveCellVolt.setStretch(0, 2)
-        self.AveCellVolt.setStretch(1, 1)
-
-        self.Main.addLayout(self.AveCellVolt, 3, 0, 1, 1)
-
-        self.BatteryChargeLevel = QFrame(self.LiveStatus)
-        self.BatteryChargeLevel.setObjectName(u"BatteryChargeLevel")
-        self.BatteryChargeLevel.setFrameShape(QFrame.Shape.Box)
-        self.BatteryLevel = QVBoxLayout(self.BatteryChargeLevel)
-        self.BatteryLevel.setObjectName(u"BatteryLevel")
-        self.BatteryLevel.setContentsMargins(10, -1, 10, -1)
-        self.BatteryLevelBar = QProgressBar(self.BatteryChargeLevel)
-        self.BatteryLevelBar.setObjectName(u"BatteryLevelBar")
-        self.BatteryLevelBar.setValue(24)
-        self.BatteryLevelBar.setTextVisible(False)
-
-        self.BatteryLevel.addWidget(self.BatteryLevelBar)
-
-        self.RemainBattery = QHBoxLayout()
-        self.RemainBattery.setObjectName(u"RemainBattery")
-        self.RemainBatteryText = QLabel(self.BatteryChargeLevel)
-        self.RemainBatteryText.setObjectName(u"RemainBatteryText")
-        self.RemainBatteryText.setFont(font1)
-        self.RemainBatteryText.setAlignment(Qt.AlignmentFlag.AlignRight|Qt.AlignmentFlag.AlignTrailing|Qt.AlignmentFlag.AlignVCenter)
-
-        self.RemainBattery.addWidget(self.RemainBatteryText)
-
-        self.RemainBatteryLabel = QLabel(self.BatteryChargeLevel)
-        self.RemainBatteryLabel.setObjectName(u"RemainBatteryLabel")
-        self.RemainBatteryLabel.setFont(font2)
-        self.RemainBatteryLabel.setAlignment(Qt.AlignmentFlag.AlignLeading|Qt.AlignmentFlag.AlignLeft|Qt.AlignmentFlag.AlignVCenter)
-
-        self.RemainBattery.addWidget(self.RemainBatteryLabel)
-
-        self.RemainBattery.setStretch(0, 2)
-        self.RemainBattery.setStretch(1, 1)
-
-        self.BatteryLevel.addLayout(self.RemainBattery)
-
-
-        self.Main.addWidget(self.BatteryChargeLevel, 2, 1, 1, 1)
-
-        self.TotalC = QFrame(self.LiveStatus)
-        self.TotalC.setObjectName(u"TotalC")
-        self.TotalC.setFrameShape(QFrame.Shape.Box)
-        self.TotalCurrent = QVBoxLayout(self.TotalC)
-        self.TotalCurrent.setObjectName(u"TotalCurrent")
-        self.Total_Current_Text = QLabel(self.TotalC)
-        self.Total_Current_Text.setObjectName(u"Total_Current_Text")
-        font4 = QFont()
-        font4.setPointSize(18)
-        font4.setBold(True)
-        self.Total_Current_Text.setFont(font4)
-        self.Total_Current_Text.setAlignment(Qt.AlignmentFlag.AlignBottom|Qt.AlignmentFlag.AlignHCenter)
-
-        self.TotalCurrent.addWidget(self.Total_Current_Text)
-
-        self.Total_Current = QLabel(self.TotalC)
-        self.Total_Current.setObjectName(u"Total_Current")
-        sizePolicy1 = QSizePolicy(QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Preferred)
+        self.startButton = QPushButton(self.LiveStatus)
+        self.startButton.setObjectName(u"startButton")
+        sizePolicy1 = QSizePolicy(QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Fixed)
         sizePolicy1.setHorizontalStretch(0)
         sizePolicy1.setVerticalStretch(0)
-        sizePolicy1.setHeightForWidth(self.Total_Current.sizePolicy().hasHeightForWidth())
-        self.Total_Current.setSizePolicy(sizePolicy1)
-        font5 = QFont()
-        font5.setPointSize(16)
-        self.Total_Current.setFont(font5)
-        self.Total_Current.setAlignment(Qt.AlignmentFlag.AlignHCenter|Qt.AlignmentFlag.AlignTop)
+        sizePolicy1.setHeightForWidth(self.startButton.sizePolicy().hasHeightForWidth())
+        self.startButton.setSizePolicy(sizePolicy1)
+        self.startButton.setMinimumSize(QSize(0, 50))
+        font3 = QFont()
+        font3.setFamilies([u"Segoe UI"])
+        font3.setPointSize(13)
+        font3.setBold(True)
+        font3.setItalic(False)
+        self.startButton.setFont(font3)
 
-        self.TotalCurrent.addWidget(self.Total_Current)
-
-
-        self.Main.addWidget(self.TotalC, 1, 1, 1, 1)
+        self.Main.addWidget(self.startButton, 0, 0, 1, 1)
 
         self.TotalV = QFrame(self.LiveStatus)
         self.TotalV.setObjectName(u"TotalV")
-        self.TotalV.setFrameShape(QFrame.Shape.Box)
+        self.TotalV.setFrameShape(QFrame.Shape.StyledPanel)
         self.TotalVoltage = QVBoxLayout(self.TotalV)
         self.TotalVoltage.setObjectName(u"TotalVoltage")
         self.Total_Voltage_Text = QLabel(self.TotalV)
         self.Total_Voltage_Text.setObjectName(u"Total_Voltage_Text")
+        font4 = QFont()
+        font4.setPointSize(18)
+        font4.setBold(True)
         self.Total_Voltage_Text.setFont(font4)
         self.Total_Voltage_Text.setLayoutDirection(Qt.LayoutDirection.LeftToRight)
         self.Total_Voltage_Text.setAutoFillBackground(False)
@@ -389,6 +265,8 @@ class Ui_MainWindow(object):
 
         self.Total_Voltage = QLabel(self.TotalV)
         self.Total_Voltage.setObjectName(u"Total_Voltage")
+        font5 = QFont()
+        font5.setPointSize(16)
         self.Total_Voltage.setFont(font5)
         self.Total_Voltage.setAlignment(Qt.AlignmentFlag.AlignHCenter|Qt.AlignmentFlag.AlignTop)
 
@@ -397,73 +275,177 @@ class Ui_MainWindow(object):
 
         self.Main.addWidget(self.TotalV, 1, 0, 1, 1)
 
-        self.startButton = QPushButton(self.LiveStatus)
-        self.startButton.setObjectName(u"startButton")
-        sizePolicy2 = QSizePolicy(QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Fixed)
-        sizePolicy2.setHorizontalStretch(0)
-        sizePolicy2.setVerticalStretch(0)
-        sizePolicy2.setHeightForWidth(self.startButton.sizePolicy().hasHeightForWidth())
-        self.startButton.setSizePolicy(sizePolicy2)
-        self.startButton.setMinimumSize(QSize(0, 50))
+        self.AveTemp = QVBoxLayout()
+        self.AveTemp.setObjectName(u"AveTemp")
+        self.AveTemp.setContentsMargins(10, -1, -1, -1)
+        self.AveTempText = QLabel(self.LiveStatus)
+        self.AveTempText.setObjectName(u"AveTempText")
+        self.AveTempText.setFont(font1)
+        self.AveTempText.setAlignment(Qt.AlignmentFlag.AlignBottom|Qt.AlignmentFlag.AlignHCenter)
+        self.AveTempText.setWordWrap(False)
+
+        self.AveTemp.addWidget(self.AveTempText)
+
+        self.AvgTempLabel = QLabel(self.LiveStatus)
+        self.AvgTempLabel.setObjectName(u"AvgTempLabel")
+        self.AvgTempLabel.setFont(font2)
+        self.AvgTempLabel.setAlignment(Qt.AlignmentFlag.AlignHCenter|Qt.AlignmentFlag.AlignTop)
+
+        self.AveTemp.addWidget(self.AvgTempLabel)
+
+
+        self.Main.addLayout(self.AveTemp, 3, 0, 1, 1)
+
+        self.stopButton = QPushButton(self.LiveStatus)
+        self.stopButton.setObjectName(u"stopButton")
+        self.stopButton.setMinimumSize(QSize(0, 50))
         font6 = QFont()
         font6.setFamilies([u"Segoe UI"])
-        font6.setPointSize(13)
+        font6.setPointSize(14)
         font6.setBold(True)
-        font6.setItalic(False)
-        self.startButton.setFont(font6)
+        self.stopButton.setFont(font6)
 
-        self.Main.addWidget(self.startButton, 0, 0, 1, 1)
+        self.Main.addWidget(self.stopButton, 0, 1, 1, 1)
 
-        self.BatteryCapacity = QHBoxLayout()
-        self.BatteryCapacity.setObjectName(u"BatteryCapacity")
-        self.BatteryCapacityText = QLabel(self.LiveStatus)
-        self.BatteryCapacityText.setObjectName(u"BatteryCapacityText")
-        self.BatteryCapacityText.setFont(font1)
-        self.BatteryCapacityText.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        self.TotalC = QFrame(self.LiveStatus)
+        self.TotalC.setObjectName(u"TotalC")
+        self.TotalC.setFrameShape(QFrame.Shape.StyledPanel)
+        self.TotalC.setFrameShadow(QFrame.Shadow.Plain)
+        self.TotalCurrent = QVBoxLayout(self.TotalC)
+        self.TotalCurrent.setObjectName(u"TotalCurrent")
+        self.Total_Current_Text = QLabel(self.TotalC)
+        self.Total_Current_Text.setObjectName(u"Total_Current_Text")
+        self.Total_Current_Text.setFont(font4)
+        self.Total_Current_Text.setAlignment(Qt.AlignmentFlag.AlignBottom|Qt.AlignmentFlag.AlignHCenter)
 
-        self.BatteryCapacity.addWidget(self.BatteryCapacityText)
+        self.TotalCurrent.addWidget(self.Total_Current_Text)
 
-        self.BatteryCapacityLabel = QLabel(self.LiveStatus)
-        self.BatteryCapacityLabel.setObjectName(u"BatteryCapacityLabel")
-        self.BatteryCapacityLabel.setFont(font2)
-        self.BatteryCapacityLabel.setAlignment(Qt.AlignmentFlag.AlignLeading|Qt.AlignmentFlag.AlignLeft|Qt.AlignmentFlag.AlignVCenter)
+        self.Total_Current = QLabel(self.TotalC)
+        self.Total_Current.setObjectName(u"Total_Current")
+        sizePolicy2 = QSizePolicy(QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Preferred)
+        sizePolicy2.setHorizontalStretch(0)
+        sizePolicy2.setVerticalStretch(0)
+        sizePolicy2.setHeightForWidth(self.Total_Current.sizePolicy().hasHeightForWidth())
+        self.Total_Current.setSizePolicy(sizePolicy2)
+        self.Total_Current.setFont(font5)
+        self.Total_Current.setAlignment(Qt.AlignmentFlag.AlignHCenter|Qt.AlignmentFlag.AlignTop)
 
-        self.BatteryCapacity.addWidget(self.BatteryCapacityLabel)
+        self.TotalCurrent.addWidget(self.Total_Current)
 
-        self.BatteryCapacity.setStretch(0, 3)
-        self.BatteryCapacity.setStretch(1, 1)
 
-        self.Main.addLayout(self.BatteryCapacity, 4, 0, 1, 1)
+        self.Main.addWidget(self.TotalC, 1, 1, 1, 1)
 
-        self.CellVoltDiff = QHBoxLayout()
+        self.CellVoltDiff = QVBoxLayout()
         self.CellVoltDiff.setObjectName(u"CellVoltDiff")
+        self.CellVoltDiff.setContentsMargins(10, -1, -1, -1)
         self.CellVoltDiffText = QLabel(self.LiveStatus)
         self.CellVoltDiffText.setObjectName(u"CellVoltDiffText")
         self.CellVoltDiffText.setFont(font1)
-        self.CellVoltDiffText.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        self.CellVoltDiffText.setAlignment(Qt.AlignmentFlag.AlignBottom|Qt.AlignmentFlag.AlignHCenter)
+        self.CellVoltDiffText.setWordWrap(False)
 
         self.CellVoltDiff.addWidget(self.CellVoltDiffText)
 
         self.CellVoltDiffLabel = QLabel(self.LiveStatus)
         self.CellVoltDiffLabel.setObjectName(u"CellVoltDiffLabel")
         self.CellVoltDiffLabel.setFont(font2)
-        self.CellVoltDiffLabel.setAlignment(Qt.AlignmentFlag.AlignLeading|Qt.AlignmentFlag.AlignLeft|Qt.AlignmentFlag.AlignVCenter)
+        self.CellVoltDiffLabel.setAlignment(Qt.AlignmentFlag.AlignHCenter|Qt.AlignmentFlag.AlignTop)
 
         self.CellVoltDiff.addWidget(self.CellVoltDiffLabel)
 
-        self.CellVoltDiff.setStretch(0, 2)
-        self.CellVoltDiff.setStretch(1, 1)
 
-        self.Main.addLayout(self.CellVoltDiff, 3, 1, 1, 1)
+        self.Main.addLayout(self.CellVoltDiff, 2, 1, 1, 1)
+
+        self.BatteryCapacity = QVBoxLayout()
+        self.BatteryCapacity.setObjectName(u"BatteryCapacity")
+        self.BatteryCapacity.setContentsMargins(16, -1, -1, -1)
+        self.BatteryCapacityText = QLabel(self.LiveStatus)
+        self.BatteryCapacityText.setObjectName(u"BatteryCapacityText")
+        self.BatteryCapacityText.setFont(font1)
+        self.BatteryCapacityText.setAlignment(Qt.AlignmentFlag.AlignBottom|Qt.AlignmentFlag.AlignHCenter)
+        self.BatteryCapacityText.setWordWrap(False)
+
+        self.BatteryCapacity.addWidget(self.BatteryCapacityText)
+
+        self.BatteryCapacityLabel = QLabel(self.LiveStatus)
+        self.BatteryCapacityLabel.setObjectName(u"BatteryCapacityLabel")
+        self.BatteryCapacityLabel.setFont(font2)
+        self.BatteryCapacityLabel.setAlignment(Qt.AlignmentFlag.AlignHCenter|Qt.AlignmentFlag.AlignTop)
+
+        self.BatteryCapacity.addWidget(self.BatteryCapacityLabel)
+
+
+        self.Main.addLayout(self.BatteryCapacity, 3, 1, 1, 1)
+
+        self.RemainCapacitypresentage = QVBoxLayout()
+        self.RemainCapacitypresentage.setObjectName(u"RemainCapacitypresentage")
+        self.RemainCapacitypresentage.setContentsMargins(16, -1, -1, -1)
+        self.RemainCapacityPresentageText = QLabel(self.LiveStatus)
+        self.RemainCapacityPresentageText.setObjectName(u"RemainCapacityPresentageText")
+        self.RemainCapacityPresentageText.setFont(font1)
+        self.RemainCapacityPresentageText.setAlignment(Qt.AlignmentFlag.AlignBottom|Qt.AlignmentFlag.AlignHCenter)
+        self.RemainCapacityPresentageText.setWordWrap(False)
+
+        self.RemainCapacitypresentage.addWidget(self.RemainCapacityPresentageText)
+
+        self.RemainCapacityPresentageLabel = QLabel(self.LiveStatus)
+        self.RemainCapacityPresentageLabel.setObjectName(u"RemainCapacityPresentageLabel")
+        self.RemainCapacityPresentageLabel.setFont(font2)
+        self.RemainCapacityPresentageLabel.setAlignment(Qt.AlignmentFlag.AlignHCenter|Qt.AlignmentFlag.AlignTop)
+
+        self.RemainCapacitypresentage.addWidget(self.RemainCapacityPresentageLabel)
+
+
+        self.Main.addLayout(self.RemainCapacitypresentage, 4, 0, 1, 1)
+
+        self.RemainCapacity = QVBoxLayout()
+        self.RemainCapacity.setObjectName(u"RemainCapacity")
+        self.RemainCapacity.setContentsMargins(16, -1, -1, -1)
+        self.RemainCapacityText = QLabel(self.LiveStatus)
+        self.RemainCapacityText.setObjectName(u"RemainCapacityText")
+        self.RemainCapacityText.setFont(font1)
+        self.RemainCapacityText.setAlignment(Qt.AlignmentFlag.AlignBottom|Qt.AlignmentFlag.AlignHCenter)
+        self.RemainCapacityText.setWordWrap(False)
+
+        self.RemainCapacity.addWidget(self.RemainCapacityText)
+
+        self.RemainCapacityLabel = QLabel(self.LiveStatus)
+        self.RemainCapacityLabel.setObjectName(u"RemainCapacityLabel")
+        self.RemainCapacityLabel.setFont(font2)
+        self.RemainCapacityLabel.setAlignment(Qt.AlignmentFlag.AlignHCenter|Qt.AlignmentFlag.AlignTop)
+
+        self.RemainCapacity.addWidget(self.RemainCapacityLabel)
+
+
+        self.Main.addLayout(self.RemainCapacity, 4, 1, 1, 1)
+
+        self.AveCellVolt = QVBoxLayout()
+        self.AveCellVolt.setObjectName(u"AveCellVolt")
+        self.AveCellVolt.setContentsMargins(10, -1, -1, -1)
+        self.AveCellVoltText = QLabel(self.LiveStatus)
+        self.AveCellVoltText.setObjectName(u"AveCellVoltText")
+        self.AveCellVoltText.setFont(font1)
+        self.AveCellVoltText.setAlignment(Qt.AlignmentFlag.AlignBottom|Qt.AlignmentFlag.AlignHCenter)
+        self.AveCellVoltText.setWordWrap(False)
+
+        self.AveCellVolt.addWidget(self.AveCellVoltText)
+
+        self.AveCellVoltLabel = QLabel(self.LiveStatus)
+        self.AveCellVoltLabel.setObjectName(u"AveCellVoltLabel")
+        self.AveCellVoltLabel.setFont(font2)
+        self.AveCellVoltLabel.setAlignment(Qt.AlignmentFlag.AlignHCenter|Qt.AlignmentFlag.AlignTop)
+
+        self.AveCellVolt.addWidget(self.AveCellVoltLabel)
+
+
+        self.Main.addLayout(self.AveCellVolt, 2, 0, 1, 1)
 
         self.Main.setRowStretch(0, 3)
 
         self.Tab1Details.addLayout(self.Main)
 
-        self.CellVoltage = QFrame(self.LiveStatus)
+        self.CellVoltage = QGroupBox(self.LiveStatus)
         self.CellVoltage.setObjectName(u"CellVoltage")
-        self.CellVoltage.setFrameShape(QFrame.Shape.Panel)
-        self.CellVoltage.setFrameShadow(QFrame.Shadow.Sunken)
         self.CellVoltages = QVBoxLayout(self.CellVoltage)
         self.CellVoltages.setObjectName(u"CellVoltages")
         self.CellVoltageHeader = QLabel(self.CellVoltage)
@@ -815,7 +797,7 @@ class Ui_MainWindow(object):
 
         self.Tab1Details.addWidget(self.CellVoltage)
 
-        self.Tab1Details.setStretch(0, 1)
+        self.Tab1Details.setStretch(0, 2)
         self.Tab1Details.setStretch(1, 3)
         self.Tab1Details.setStretch(2, 2)
 
@@ -934,9 +916,11 @@ class Ui_MainWindow(object):
         self.BMSStates.setObjectName(u"BMSStates")
         self.BMSStates.setSizeConstraint(QLayout.SizeConstraint.SetDefaultConstraint)
         self.BMSStates.setContentsMargins(0, -1, -1, -1)
-        self.BalanceState = QHBoxLayout()
+        self.BalanceStates = QGroupBox(self.DeviceInfo)
+        self.BalanceStates.setObjectName(u"BalanceStates")
+        self.BalanceState = QHBoxLayout(self.BalanceStates)
         self.BalanceState.setObjectName(u"BalanceState")
-        self.BalanceStateText = QLabel(self.DeviceInfo)
+        self.BalanceStateText = QLabel(self.BalanceStates)
         self.BalanceStateText.setObjectName(u"BalanceStateText")
         font14 = QFont()
         font14.setBold(True)
@@ -945,50 +929,54 @@ class Ui_MainWindow(object):
 
         self.BalanceState.addWidget(self.BalanceStateText)
 
-        self.BalanceStateLabel = QLabel(self.DeviceInfo)
+        self.BalanceStateLabel = QLabel(self.BalanceStates)
         self.BalanceStateLabel.setObjectName(u"BalanceStateLabel")
         self.BalanceStateLabel.setAlignment(Qt.AlignmentFlag.AlignLeading|Qt.AlignmentFlag.AlignLeft|Qt.AlignmentFlag.AlignVCenter)
 
         self.BalanceState.addWidget(self.BalanceStateLabel)
 
 
-        self.BMSStates.addLayout(self.BalanceState)
+        self.BMSStates.addWidget(self.BalanceStates)
 
-        self.ChargeState = QHBoxLayout()
+        self.ChargeStates = QGroupBox(self.DeviceInfo)
+        self.ChargeStates.setObjectName(u"ChargeStates")
+        self.ChargeState = QHBoxLayout(self.ChargeStates)
         self.ChargeState.setObjectName(u"ChargeState")
-        self.ChargeStateText = QLabel(self.DeviceInfo)
+        self.ChargeStateText = QLabel(self.ChargeStates)
         self.ChargeStateText.setObjectName(u"ChargeStateText")
         self.ChargeStateText.setFont(font14)
         self.ChargeStateText.setAlignment(Qt.AlignmentFlag.AlignRight|Qt.AlignmentFlag.AlignTrailing|Qt.AlignmentFlag.AlignVCenter)
 
         self.ChargeState.addWidget(self.ChargeStateText)
 
-        self.ChargeStateLabel = QLabel(self.DeviceInfo)
+        self.ChargeStateLabel = QLabel(self.ChargeStates)
         self.ChargeStateLabel.setObjectName(u"ChargeStateLabel")
         self.ChargeStateLabel.setAlignment(Qt.AlignmentFlag.AlignLeading|Qt.AlignmentFlag.AlignLeft|Qt.AlignmentFlag.AlignVCenter)
 
         self.ChargeState.addWidget(self.ChargeStateLabel)
 
 
-        self.BMSStates.addLayout(self.ChargeState)
+        self.BMSStates.addWidget(self.ChargeStates)
 
-        self.DischargeState = QHBoxLayout()
+        self.DischargeStates = QGroupBox(self.DeviceInfo)
+        self.DischargeStates.setObjectName(u"DischargeStates")
+        self.DischargeState = QHBoxLayout(self.DischargeStates)
         self.DischargeState.setObjectName(u"DischargeState")
-        self.DischargeStateText = QLabel(self.DeviceInfo)
+        self.DischargeStateText = QLabel(self.DischargeStates)
         self.DischargeStateText.setObjectName(u"DischargeStateText")
         self.DischargeStateText.setFont(font14)
         self.DischargeStateText.setAlignment(Qt.AlignmentFlag.AlignRight|Qt.AlignmentFlag.AlignTrailing|Qt.AlignmentFlag.AlignVCenter)
 
         self.DischargeState.addWidget(self.DischargeStateText)
 
-        self.DischargeStateLabel = QLabel(self.DeviceInfo)
+        self.DischargeStateLabel = QLabel(self.DischargeStates)
         self.DischargeStateLabel.setObjectName(u"DischargeStateLabel")
         self.DischargeStateLabel.setAlignment(Qt.AlignmentFlag.AlignLeading|Qt.AlignmentFlag.AlignLeft|Qt.AlignmentFlag.AlignVCenter)
 
         self.DischargeState.addWidget(self.DischargeStateLabel)
 
 
-        self.BMSStates.addLayout(self.DischargeState)
+        self.BMSStates.addWidget(self.DischargeStates)
 
 
         self.MainDetails.addLayout(self.BMSStates)
@@ -1014,6 +1002,7 @@ class Ui_MainWindow(object):
 
         self.listView_users = QListView(self.verticalFrame)
         self.listView_users.setObjectName(u"listView_users")
+        self.listView_users.setFont(font1)
         self.listView_users.setEditTriggers(QAbstractItemView.EditTrigger.NoEditTriggers)
 
         self.verticalLayout_3.addWidget(self.listView_users)
@@ -1047,13 +1036,16 @@ class Ui_MainWindow(object):
         self.MaxVoltageDiff.setObjectName(u"MaxVoltageDiff")
         self.VoltageDiffLabel = QLabel(self.Configuration)
         self.VoltageDiffLabel.setObjectName(u"VoltageDiffLabel")
+        self.VoltageDiffLabel.setFont(font14)
         self.VoltageDiffLabel.setAlignment(Qt.AlignmentFlag.AlignBottom|Qt.AlignmentFlag.AlignLeading|Qt.AlignmentFlag.AlignLeft)
 
         self.MaxVoltageDiff.addWidget(self.VoltageDiffLabel)
 
-        self.VoltageDiffSetter = QHBoxLayout()
+        self.VoltageDiffSet = QGroupBox(self.Configuration)
+        self.VoltageDiffSet.setObjectName(u"VoltageDiffSet")
+        self.VoltageDiffSetter = QHBoxLayout(self.VoltageDiffSet)
         self.VoltageDiffSetter.setObjectName(u"VoltageDiffSetter")
-        self.VoltageDiffBox = QDoubleSpinBox(self.Configuration)
+        self.VoltageDiffBox = QDoubleSpinBox(self.VoltageDiffSet)
         self.VoltageDiffBox.setObjectName(u"VoltageDiffBox")
         sizePolicy3.setHeightForWidth(self.VoltageDiffBox.sizePolicy().hasHeightForWidth())
         self.VoltageDiffBox.setSizePolicy(sizePolicy3)
@@ -1061,15 +1053,15 @@ class Ui_MainWindow(object):
 
         self.VoltageDiffSetter.addWidget(self.VoltageDiffBox)
 
-        self.SetVoltageDiff = QPushButton(self.Configuration)
+        self.SetVoltageDiff = QPushButton(self.VoltageDiffSet)
         self.SetVoltageDiff.setObjectName(u"SetVoltageDiff")
-        sizePolicy2.setHeightForWidth(self.SetVoltageDiff.sizePolicy().hasHeightForWidth())
-        self.SetVoltageDiff.setSizePolicy(sizePolicy2)
+        sizePolicy1.setHeightForWidth(self.SetVoltageDiff.sizePolicy().hasHeightForWidth())
+        self.SetVoltageDiff.setSizePolicy(sizePolicy1)
 
         self.VoltageDiffSetter.addWidget(self.SetVoltageDiff)
 
 
-        self.MaxVoltageDiff.addLayout(self.VoltageDiffSetter)
+        self.MaxVoltageDiff.addWidget(self.VoltageDiffSet)
 
 
         self.verticalLayout_6.addLayout(self.MaxVoltageDiff)
@@ -1078,13 +1070,16 @@ class Ui_MainWindow(object):
         self.MaxVoltage.setObjectName(u"MaxVoltage")
         self.MaxVoltageLabel = QLabel(self.Configuration)
         self.MaxVoltageLabel.setObjectName(u"MaxVoltageLabel")
+        self.MaxVoltageLabel.setFont(font14)
         self.MaxVoltageLabel.setAlignment(Qt.AlignmentFlag.AlignBottom|Qt.AlignmentFlag.AlignLeading|Qt.AlignmentFlag.AlignLeft)
 
         self.MaxVoltage.addWidget(self.MaxVoltageLabel)
 
-        self.MaxVoltageSetter = QHBoxLayout()
+        self.MaxVoltageSett = QGroupBox(self.Configuration)
+        self.MaxVoltageSett.setObjectName(u"MaxVoltageSett")
+        self.MaxVoltageSetter = QHBoxLayout(self.MaxVoltageSett)
         self.MaxVoltageSetter.setObjectName(u"MaxVoltageSetter")
-        self.MaxVoltageBox = QDoubleSpinBox(self.Configuration)
+        self.MaxVoltageBox = QDoubleSpinBox(self.MaxVoltageSett)
         self.MaxVoltageBox.setObjectName(u"MaxVoltageBox")
         sizePolicy3.setHeightForWidth(self.MaxVoltageBox.sizePolicy().hasHeightForWidth())
         self.MaxVoltageBox.setSizePolicy(sizePolicy3)
@@ -1092,15 +1087,15 @@ class Ui_MainWindow(object):
 
         self.MaxVoltageSetter.addWidget(self.MaxVoltageBox)
 
-        self.SetMaxVoltage = QPushButton(self.Configuration)
+        self.SetMaxVoltage = QPushButton(self.MaxVoltageSett)
         self.SetMaxVoltage.setObjectName(u"SetMaxVoltage")
-        sizePolicy2.setHeightForWidth(self.SetMaxVoltage.sizePolicy().hasHeightForWidth())
-        self.SetMaxVoltage.setSizePolicy(sizePolicy2)
+        sizePolicy1.setHeightForWidth(self.SetMaxVoltage.sizePolicy().hasHeightForWidth())
+        self.SetMaxVoltage.setSizePolicy(sizePolicy1)
 
         self.MaxVoltageSetter.addWidget(self.SetMaxVoltage)
 
 
-        self.MaxVoltage.addLayout(self.MaxVoltageSetter)
+        self.MaxVoltage.addWidget(self.MaxVoltageSett)
 
 
         self.verticalLayout_6.addLayout(self.MaxVoltage)
@@ -1109,13 +1104,16 @@ class Ui_MainWindow(object):
         self.MinVoltage.setObjectName(u"MinVoltage")
         self.MinVoltageLabel = QLabel(self.Configuration)
         self.MinVoltageLabel.setObjectName(u"MinVoltageLabel")
+        self.MinVoltageLabel.setFont(font14)
         self.MinVoltageLabel.setAlignment(Qt.AlignmentFlag.AlignBottom|Qt.AlignmentFlag.AlignLeading|Qt.AlignmentFlag.AlignLeft)
 
         self.MinVoltage.addWidget(self.MinVoltageLabel)
 
-        self.MinVoltageSetter = QHBoxLayout()
+        self.MinVoltageSet = QGroupBox(self.Configuration)
+        self.MinVoltageSet.setObjectName(u"MinVoltageSet")
+        self.MinVoltageSetter = QHBoxLayout(self.MinVoltageSet)
         self.MinVoltageSetter.setObjectName(u"MinVoltageSetter")
-        self.MinVoltageBox = QDoubleSpinBox(self.Configuration)
+        self.MinVoltageBox = QDoubleSpinBox(self.MinVoltageSet)
         self.MinVoltageBox.setObjectName(u"MinVoltageBox")
         sizePolicy3.setHeightForWidth(self.MinVoltageBox.sizePolicy().hasHeightForWidth())
         self.MinVoltageBox.setSizePolicy(sizePolicy3)
@@ -1123,15 +1121,15 @@ class Ui_MainWindow(object):
 
         self.MinVoltageSetter.addWidget(self.MinVoltageBox)
 
-        self.SetMinVoltage = QPushButton(self.Configuration)
+        self.SetMinVoltage = QPushButton(self.MinVoltageSet)
         self.SetMinVoltage.setObjectName(u"SetMinVoltage")
-        sizePolicy2.setHeightForWidth(self.SetMinVoltage.sizePolicy().hasHeightForWidth())
-        self.SetMinVoltage.setSizePolicy(sizePolicy2)
+        sizePolicy1.setHeightForWidth(self.SetMinVoltage.sizePolicy().hasHeightForWidth())
+        self.SetMinVoltage.setSizePolicy(sizePolicy1)
 
         self.MinVoltageSetter.addWidget(self.SetMinVoltage)
 
 
-        self.MinVoltage.addLayout(self.MinVoltageSetter)
+        self.MinVoltage.addWidget(self.MinVoltageSet)
 
 
         self.verticalLayout_6.addLayout(self.MinVoltage)
@@ -1140,13 +1138,16 @@ class Ui_MainWindow(object):
         self.TempWarn.setObjectName(u"TempWarn")
         self.TempWarnSetterLabel = QLabel(self.Configuration)
         self.TempWarnSetterLabel.setObjectName(u"TempWarnSetterLabel")
+        self.TempWarnSetterLabel.setFont(font14)
         self.TempWarnSetterLabel.setAlignment(Qt.AlignmentFlag.AlignBottom|Qt.AlignmentFlag.AlignLeading|Qt.AlignmentFlag.AlignLeft)
 
         self.TempWarn.addWidget(self.TempWarnSetterLabel)
 
-        self.TempWarnSetter = QHBoxLayout()
+        self.TempWarnSet = QGroupBox(self.Configuration)
+        self.TempWarnSet.setObjectName(u"TempWarnSet")
+        self.TempWarnSetter = QHBoxLayout(self.TempWarnSet)
         self.TempWarnSetter.setObjectName(u"TempWarnSetter")
-        self.TempWarnBox = QDoubleSpinBox(self.Configuration)
+        self.TempWarnBox = QDoubleSpinBox(self.TempWarnSet)
         self.TempWarnBox.setObjectName(u"TempWarnBox")
         sizePolicy3.setHeightForWidth(self.TempWarnBox.sizePolicy().hasHeightForWidth())
         self.TempWarnBox.setSizePolicy(sizePolicy3)
@@ -1154,15 +1155,15 @@ class Ui_MainWindow(object):
 
         self.TempWarnSetter.addWidget(self.TempWarnBox)
 
-        self.SetTempWarn = QPushButton(self.Configuration)
+        self.SetTempWarn = QPushButton(self.TempWarnSet)
         self.SetTempWarn.setObjectName(u"SetTempWarn")
-        sizePolicy2.setHeightForWidth(self.SetTempWarn.sizePolicy().hasHeightForWidth())
-        self.SetTempWarn.setSizePolicy(sizePolicy2)
+        sizePolicy1.setHeightForWidth(self.SetTempWarn.sizePolicy().hasHeightForWidth())
+        self.SetTempWarn.setSizePolicy(sizePolicy1)
 
         self.TempWarnSetter.addWidget(self.SetTempWarn)
 
 
-        self.TempWarn.addLayout(self.TempWarnSetter)
+        self.TempWarn.addWidget(self.TempWarnSet)
 
 
         self.verticalLayout_6.addLayout(self.TempWarn)
@@ -1180,13 +1181,17 @@ class Ui_MainWindow(object):
         self.MinSOC.setObjectName(u"MinSOC")
         self.MinSOCLabel = QLabel(self.Configuration)
         self.MinSOCLabel.setObjectName(u"MinSOCLabel")
+        self.MinSOCLabel.setFont(font14)
+        self.MinSOCLabel.setTextFormat(Qt.TextFormat.AutoText)
         self.MinSOCLabel.setAlignment(Qt.AlignmentFlag.AlignBottom|Qt.AlignmentFlag.AlignLeading|Qt.AlignmentFlag.AlignLeft)
 
         self.MinSOC.addWidget(self.MinSOCLabel)
 
-        self.MinSOCSetter = QHBoxLayout()
+        self.MinSOCSet = QGroupBox(self.Configuration)
+        self.MinSOCSet.setObjectName(u"MinSOCSet")
+        self.MinSOCSetter = QHBoxLayout(self.MinSOCSet)
         self.MinSOCSetter.setObjectName(u"MinSOCSetter")
-        self.MinSOCBox = QDoubleSpinBox(self.Configuration)
+        self.MinSOCBox = QDoubleSpinBox(self.MinSOCSet)
         self.MinSOCBox.setObjectName(u"MinSOCBox")
         sizePolicy3.setHeightForWidth(self.MinSOCBox.sizePolicy().hasHeightForWidth())
         self.MinSOCBox.setSizePolicy(sizePolicy3)
@@ -1194,15 +1199,15 @@ class Ui_MainWindow(object):
 
         self.MinSOCSetter.addWidget(self.MinSOCBox)
 
-        self.SetMinSOC = QPushButton(self.Configuration)
+        self.SetMinSOC = QPushButton(self.MinSOCSet)
         self.SetMinSOC.setObjectName(u"SetMinSOC")
-        sizePolicy2.setHeightForWidth(self.SetMinSOC.sizePolicy().hasHeightForWidth())
-        self.SetMinSOC.setSizePolicy(sizePolicy2)
+        sizePolicy1.setHeightForWidth(self.SetMinSOC.sizePolicy().hasHeightForWidth())
+        self.SetMinSOC.setSizePolicy(sizePolicy1)
 
         self.MinSOCSetter.addWidget(self.SetMinSOC)
 
 
-        self.MinSOC.addLayout(self.MinSOCSetter)
+        self.MinSOC.addWidget(self.MinSOCSet)
 
 
         self.verticalLayout_7.addLayout(self.MinSOC)
@@ -1211,13 +1216,16 @@ class Ui_MainWindow(object):
         self.MaxCurrent.setObjectName(u"MaxCurrent")
         self.MaxCurrentLabel = QLabel(self.Configuration)
         self.MaxCurrentLabel.setObjectName(u"MaxCurrentLabel")
+        self.MaxCurrentLabel.setFont(font14)
         self.MaxCurrentLabel.setAlignment(Qt.AlignmentFlag.AlignBottom|Qt.AlignmentFlag.AlignLeading|Qt.AlignmentFlag.AlignLeft)
 
         self.MaxCurrent.addWidget(self.MaxCurrentLabel)
 
-        self.MaxCurrentSetter = QHBoxLayout()
+        self.MaxCurrentSet = QGroupBox(self.Configuration)
+        self.MaxCurrentSet.setObjectName(u"MaxCurrentSet")
+        self.MaxCurrentSetter = QHBoxLayout(self.MaxCurrentSet)
         self.MaxCurrentSetter.setObjectName(u"MaxCurrentSetter")
-        self.MaxCurrentBox = QDoubleSpinBox(self.Configuration)
+        self.MaxCurrentBox = QDoubleSpinBox(self.MaxCurrentSet)
         self.MaxCurrentBox.setObjectName(u"MaxCurrentBox")
         sizePolicy3.setHeightForWidth(self.MaxCurrentBox.sizePolicy().hasHeightForWidth())
         self.MaxCurrentBox.setSizePolicy(sizePolicy3)
@@ -1225,15 +1233,15 @@ class Ui_MainWindow(object):
 
         self.MaxCurrentSetter.addWidget(self.MaxCurrentBox)
 
-        self.SetMaxCurrent = QPushButton(self.Configuration)
+        self.SetMaxCurrent = QPushButton(self.MaxCurrentSet)
         self.SetMaxCurrent.setObjectName(u"SetMaxCurrent")
-        sizePolicy2.setHeightForWidth(self.SetMaxCurrent.sizePolicy().hasHeightForWidth())
-        self.SetMaxCurrent.setSizePolicy(sizePolicy2)
+        sizePolicy1.setHeightForWidth(self.SetMaxCurrent.sizePolicy().hasHeightForWidth())
+        self.SetMaxCurrent.setSizePolicy(sizePolicy1)
 
         self.MaxCurrentSetter.addWidget(self.SetMaxCurrent)
 
 
-        self.MaxCurrent.addLayout(self.MaxCurrentSetter)
+        self.MaxCurrent.addWidget(self.MaxCurrentSet)
 
 
         self.verticalLayout_7.addLayout(self.MaxCurrent)
@@ -1242,13 +1250,16 @@ class Ui_MainWindow(object):
         self.TempDisconnect.setObjectName(u"TempDisconnect")
         self.TempDisconnectLabel = QLabel(self.Configuration)
         self.TempDisconnectLabel.setObjectName(u"TempDisconnectLabel")
+        self.TempDisconnectLabel.setFont(font14)
         self.TempDisconnectLabel.setAlignment(Qt.AlignmentFlag.AlignBottom|Qt.AlignmentFlag.AlignLeading|Qt.AlignmentFlag.AlignLeft)
 
         self.TempDisconnect.addWidget(self.TempDisconnectLabel)
 
-        self.TempDisconnectSetter = QHBoxLayout()
+        self.TempDisconnectSet = QGroupBox(self.Configuration)
+        self.TempDisconnectSet.setObjectName(u"TempDisconnectSet")
+        self.TempDisconnectSetter = QHBoxLayout(self.TempDisconnectSet)
         self.TempDisconnectSetter.setObjectName(u"TempDisconnectSetter")
-        self.TempDisconnectBox = QDoubleSpinBox(self.Configuration)
+        self.TempDisconnectBox = QDoubleSpinBox(self.TempDisconnectSet)
         self.TempDisconnectBox.setObjectName(u"TempDisconnectBox")
         sizePolicy3.setHeightForWidth(self.TempDisconnectBox.sizePolicy().hasHeightForWidth())
         self.TempDisconnectBox.setSizePolicy(sizePolicy3)
@@ -1256,15 +1267,15 @@ class Ui_MainWindow(object):
 
         self.TempDisconnectSetter.addWidget(self.TempDisconnectBox)
 
-        self.SetTempDisconnect = QPushButton(self.Configuration)
+        self.SetTempDisconnect = QPushButton(self.TempDisconnectSet)
         self.SetTempDisconnect.setObjectName(u"SetTempDisconnect")
-        sizePolicy2.setHeightForWidth(self.SetTempDisconnect.sizePolicy().hasHeightForWidth())
-        self.SetTempDisconnect.setSizePolicy(sizePolicy2)
+        sizePolicy1.setHeightForWidth(self.SetTempDisconnect.sizePolicy().hasHeightForWidth())
+        self.SetTempDisconnect.setSizePolicy(sizePolicy1)
 
         self.TempDisconnectSetter.addWidget(self.SetTempDisconnect)
 
 
-        self.TempDisconnect.addLayout(self.TempDisconnectSetter)
+        self.TempDisconnect.addWidget(self.TempDisconnectSet)
 
 
         self.verticalLayout_7.addLayout(self.TempDisconnect)
@@ -1273,13 +1284,16 @@ class Ui_MainWindow(object):
         self.BatterCapacity.setObjectName(u"BatterCapacity")
         self.BatterCapacityLabel = QLabel(self.Configuration)
         self.BatterCapacityLabel.setObjectName(u"BatterCapacityLabel")
+        self.BatterCapacityLabel.setFont(font14)
         self.BatterCapacityLabel.setAlignment(Qt.AlignmentFlag.AlignBottom|Qt.AlignmentFlag.AlignLeading|Qt.AlignmentFlag.AlignLeft)
 
         self.BatterCapacity.addWidget(self.BatterCapacityLabel)
 
-        self.BatterCapacitySetter = QHBoxLayout()
+        self.BatterCapacitySet = QGroupBox(self.Configuration)
+        self.BatterCapacitySet.setObjectName(u"BatterCapacitySet")
+        self.BatterCapacitySetter = QHBoxLayout(self.BatterCapacitySet)
         self.BatterCapacitySetter.setObjectName(u"BatterCapacitySetter")
-        self.BatterCapacityBox = QDoubleSpinBox(self.Configuration)
+        self.BatterCapacityBox = QDoubleSpinBox(self.BatterCapacitySet)
         self.BatterCapacityBox.setObjectName(u"BatterCapacityBox")
         sizePolicy3.setHeightForWidth(self.BatterCapacityBox.sizePolicy().hasHeightForWidth())
         self.BatterCapacityBox.setSizePolicy(sizePolicy3)
@@ -1287,15 +1301,15 @@ class Ui_MainWindow(object):
 
         self.BatterCapacitySetter.addWidget(self.BatterCapacityBox)
 
-        self.SetBatterCapacity = QPushButton(self.Configuration)
+        self.SetBatterCapacity = QPushButton(self.BatterCapacitySet)
         self.SetBatterCapacity.setObjectName(u"SetBatterCapacity")
-        sizePolicy2.setHeightForWidth(self.SetBatterCapacity.sizePolicy().hasHeightForWidth())
-        self.SetBatterCapacity.setSizePolicy(sizePolicy2)
+        sizePolicy1.setHeightForWidth(self.SetBatterCapacity.sizePolicy().hasHeightForWidth())
+        self.SetBatterCapacity.setSizePolicy(sizePolicy1)
 
         self.BatterCapacitySetter.addWidget(self.SetBatterCapacity)
 
 
-        self.BatterCapacity.addLayout(self.BatterCapacitySetter)
+        self.BatterCapacity.addWidget(self.BatterCapacitySet)
 
 
         self.verticalLayout_7.addLayout(self.BatterCapacity)
@@ -1311,95 +1325,98 @@ class Ui_MainWindow(object):
         self.tabWidget.addTab(self.Configuration, "")
         self.Settings = QWidget()
         self.Settings.setObjectName(u"Settings")
-        self.COMConnectionFeedback = QLabel(self.Settings)
-        self.COMConnectionFeedback.setObjectName(u"COMConnectionFeedback")
-        self.COMConnectionFeedback.setGeometry(QRect(360, 210, 271, 31))
         self.verticalLayoutWidget_9 = QWidget(self.Settings)
         self.verticalLayoutWidget_9.setObjectName(u"verticalLayoutWidget_9")
-        self.verticalLayoutWidget_9.setGeometry(QRect(70, 240, 191, 111))
-        self.verticalLayout_4 = QVBoxLayout(self.verticalLayoutWidget_9)
-        self.verticalLayout_4.setObjectName(u"verticalLayout_4")
-        self.verticalLayout_4.setContentsMargins(0, 0, 0, 0)
-        self.label_3 = QLabel(self.verticalLayoutWidget_9)
-        self.label_3.setObjectName(u"label_3")
+        self.verticalLayoutWidget_9.setGeometry(QRect(520, 160, 227, 74))
+        self.ThemeSelection = QVBoxLayout(self.verticalLayoutWidget_9)
+        self.ThemeSelection.setObjectName(u"ThemeSelection")
+        self.ThemeSelection.setContentsMargins(0, 0, 0, 0)
+        self.SelectThemeText = QLabel(self.verticalLayoutWidget_9)
+        self.SelectThemeText.setObjectName(u"SelectThemeText")
+        self.SelectThemeText.setAlignment(Qt.AlignmentFlag.AlignLeading|Qt.AlignmentFlag.AlignLeft|Qt.AlignmentFlag.AlignTop)
 
-        self.verticalLayout_4.addWidget(self.label_3)
+        self.ThemeSelection.addWidget(self.SelectThemeText)
 
         self.radioButton_light = QRadioButton(self.verticalLayoutWidget_9)
         self.radioButton_light.setObjectName(u"radioButton_light")
 
-        self.verticalLayout_4.addWidget(self.radioButton_light)
+        self.ThemeSelection.addWidget(self.radioButton_light)
 
         self.radioButton_dark = QRadioButton(self.verticalLayoutWidget_9)
         self.radioButton_dark.setObjectName(u"radioButton_dark")
 
-        self.verticalLayout_4.addWidget(self.radioButton_dark)
+        self.ThemeSelection.addWidget(self.radioButton_dark)
 
         self.verticalLayoutWidget_10 = QWidget(self.Settings)
         self.verticalLayoutWidget_10.setObjectName(u"verticalLayoutWidget_10")
-        self.verticalLayoutWidget_10.setGeometry(QRect(70, 100, 191, 101))
-        self.verticalLayout_5 = QVBoxLayout(self.verticalLayoutWidget_10)
-        self.verticalLayout_5.setObjectName(u"verticalLayout_5")
-        self.verticalLayout_5.setContentsMargins(0, 0, 0, 0)
-        self.horizontalLayout_3 = QHBoxLayout()
-        self.horizontalLayout_3.setObjectName(u"horizontalLayout_3")
-        self.label_2 = QLabel(self.verticalLayoutWidget_10)
-        self.label_2.setObjectName(u"label_2")
+        self.verticalLayoutWidget_10.setGeometry(QRect(190, 160, 231, 211))
+        self.PortSelection = QVBoxLayout(self.verticalLayoutWidget_10)
+        self.PortSelection.setObjectName(u"PortSelection")
+        self.PortSelection.setContentsMargins(0, 0, 0, 0)
+        self.COMPortSelection = QHBoxLayout()
+        self.COMPortSelection.setObjectName(u"COMPortSelection")
+        self.SelectCOMPort = QLabel(self.verticalLayoutWidget_10)
+        self.SelectCOMPort.setObjectName(u"SelectCOMPort")
 
-        self.horizontalLayout_3.addWidget(self.label_2)
+        self.COMPortSelection.addWidget(self.SelectCOMPort)
 
         self.comboBox_serial_list = QComboBox(self.verticalLayoutWidget_10)
         self.comboBox_serial_list.setObjectName(u"comboBox_serial_list")
 
-        self.horizontalLayout_3.addWidget(self.comboBox_serial_list)
+        self.COMPortSelection.addWidget(self.comboBox_serial_list)
 
 
-        self.verticalLayout_5.addLayout(self.horizontalLayout_3)
+        self.PortSelection.addLayout(self.COMPortSelection)
 
-        self.horizontalSpacer_2 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+        self.SpacerInCOMPortsSelection = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
 
-        self.verticalLayout_5.addItem(self.horizontalSpacer_2)
+        self.PortSelection.addItem(self.SpacerInCOMPortsSelection)
 
-        self.horizontalLayout_2 = QHBoxLayout()
-        self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
+        self.COMbuttons = QHBoxLayout()
+        self.COMbuttons.setObjectName(u"COMbuttons")
         self.ConnectSerial = QPushButton(self.verticalLayoutWidget_10)
         self.ConnectSerial.setObjectName(u"ConnectSerial")
 
-        self.horizontalLayout_2.addWidget(self.ConnectSerial)
+        self.COMbuttons.addWidget(self.ConnectSerial)
 
         self.refreshCOMports = QPushButton(self.verticalLayoutWidget_10)
         self.refreshCOMports.setObjectName(u"refreshCOMports")
 
-        self.horizontalLayout_2.addWidget(self.refreshCOMports)
+        self.COMbuttons.addWidget(self.refreshCOMports)
 
 
-        self.verticalLayout_5.addLayout(self.horizontalLayout_2)
+        self.PortSelection.addLayout(self.COMbuttons)
+
+        self.COMConnectionFeedback = QLabel(self.verticalLayoutWidget_10)
+        self.COMConnectionFeedback.setObjectName(u"COMConnectionFeedback")
+
+        self.PortSelection.addWidget(self.COMConnectionFeedback)
 
         self.tabWidget.addTab(self.Settings, "")
 
-        self.verticalLayout_2.addWidget(self.tabWidget)
+        self.verticalLayout_12.addWidget(self.tabWidget)
 
-        self.horizontalLayout_8 = QHBoxLayout()
-        self.horizontalLayout_8.setObjectName(u"horizontalLayout_8")
+        self.bottomStatusBar = QHBoxLayout()
+        self.bottomStatusBar.setObjectName(u"bottomStatusBar")
         self.label_5 = QLabel(self.centralwidget)
         self.label_5.setObjectName(u"label_5")
 
-        self.horizontalLayout_8.addWidget(self.label_5)
+        self.bottomStatusBar.addWidget(self.label_5)
 
         self.debug_lable = QLabel(self.centralwidget)
         self.debug_lable.setObjectName(u"debug_lable")
 
-        self.horizontalLayout_8.addWidget(self.debug_lable)
+        self.bottomStatusBar.addWidget(self.debug_lable)
 
-        self.horizontalLayout_8.setStretch(1, 5)
+        self.bottomStatusBar.setStretch(1, 5)
 
-        self.verticalLayout_2.addLayout(self.horizontalLayout_8)
+        self.verticalLayout_12.addLayout(self.bottomStatusBar)
 
         self.label = QLabel(self.centralwidget)
         self.label.setObjectName(u"label")
         self.label.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
-        self.verticalLayout_2.addWidget(self.label)
+        self.verticalLayout_12.addWidget(self.label)
 
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QMenuBar(MainWindow)
@@ -1424,7 +1441,7 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"MainWindow", None))
-        self.label_4.setText(QCoreApplication.translate("MainWindow", u"**Please Disconnect Before Closing the Window", None))
+        self.label_4.setText(QCoreApplication.translate("MainWindow", u"**Disconnect Before Closing the Window", None))
         self.TemperatureHeader.setText(QCoreApplication.translate("MainWindow", u"Tempareture (\u00b0C)", None))
         self.BT1text.setText(QCoreApplication.translate("MainWindow", u"Battery T1:", None))
         self.BT1label.setText(QCoreApplication.translate("MainWindow", u"0", None))
@@ -1438,24 +1455,26 @@ class Ui_MainWindow(object):
         self.BT5label.setText(QCoreApplication.translate("MainWindow", u"0", None))
         self.BT6text.setText(QCoreApplication.translate("MainWindow", u"Battery T6:", None))
         self.BT6label.setText(QCoreApplication.translate("MainWindow", u"0", None))
-        self.BatteryHealthText.setText(QCoreApplication.translate("MainWindow", u"Battery Health(%):", None))
-        self.BatteryHealthLabel.setText(QCoreApplication.translate("MainWindow", u"0", None))
-        self.RemainCapacityText.setText(QCoreApplication.translate("MainWindow", u"Remain Capacity:", None))
-        self.RemainCapacityLabel.setText(QCoreApplication.translate("MainWindow", u"0", None))
-        self.stopButton.setText(QCoreApplication.translate("MainWindow", u"Disconnect", None))
-        self.AveCellVoltText.setText(QCoreApplication.translate("MainWindow", u"Avg.Cell Volt:", None))
-        self.AveCellVoltLabel.setText(QCoreApplication.translate("MainWindow", u"0", None))
-        self.RemainBatteryText.setText(QCoreApplication.translate("MainWindow", u"Remain Battery(%):", None))
-        self.RemainBatteryLabel.setText(QCoreApplication.translate("MainWindow", u"0", None))
-        self.Total_Current_Text.setText(QCoreApplication.translate("MainWindow", u"Current (A)", None))
-        self.Total_Current.setText(QCoreApplication.translate("MainWindow", u"0", None))
+        self.StartRecordTemps.setText(QCoreApplication.translate("MainWindow", u"Start Temperature Values Recording", None))
+        self.StopRecordTemps.setText(QCoreApplication.translate("MainWindow", u"Stop Temperature Values Recording", None))
+        self.startButton.setText(QCoreApplication.translate("MainWindow", u"Connect", None))
         self.Total_Voltage_Text.setText(QCoreApplication.translate("MainWindow", u"Voltage (V)", None))
         self.Total_Voltage.setText(QCoreApplication.translate("MainWindow", u"0 ", None))
-        self.startButton.setText(QCoreApplication.translate("MainWindow", u"Connect", None))
+        self.AveTempText.setText(QCoreApplication.translate("MainWindow", u"Average Temp:", None))
+        self.AvgTempLabel.setText(QCoreApplication.translate("MainWindow", u"0", None))
+        self.stopButton.setText(QCoreApplication.translate("MainWindow", u"Disconnect", None))
+        self.Total_Current_Text.setText(QCoreApplication.translate("MainWindow", u"Current (A)", None))
+        self.Total_Current.setText(QCoreApplication.translate("MainWindow", u"0", None))
+        self.CellVoltDiffText.setText(QCoreApplication.translate("MainWindow", u"Max Cell V. Differece:", None))
+        self.CellVoltDiffLabel.setText(QCoreApplication.translate("MainWindow", u"0", None))
         self.BatteryCapacityText.setText(QCoreApplication.translate("MainWindow", u"Battery Capacity:", None))
         self.BatteryCapacityLabel.setText(QCoreApplication.translate("MainWindow", u"0", None))
-        self.CellVoltDiffText.setText(QCoreApplication.translate("MainWindow", u"Cell Volt. Diff:", None))
-        self.CellVoltDiffLabel.setText(QCoreApplication.translate("MainWindow", u"0", None))
+        self.RemainCapacityPresentageText.setText(QCoreApplication.translate("MainWindow", u"Remain Capacity(%):", None))
+        self.RemainCapacityPresentageLabel.setText(QCoreApplication.translate("MainWindow", u"0", None))
+        self.RemainCapacityText.setText(QCoreApplication.translate("MainWindow", u"Remain Capacity:", None))
+        self.RemainCapacityLabel.setText(QCoreApplication.translate("MainWindow", u"0", None))
+        self.AveCellVoltText.setText(QCoreApplication.translate("MainWindow", u"Average Cell Voltage:", None))
+        self.AveCellVoltLabel.setText(QCoreApplication.translate("MainWindow", u"0", None))
         self.CellVoltageHeader.setText(QCoreApplication.translate("MainWindow", u"Cell Voltage(V)", None))
         self.C1_text.setText(QCoreApplication.translate("MainWindow", u"C1:", None))
         self.C1_label.setText(QCoreApplication.translate("MainWindow", u"0", None))
@@ -1526,13 +1545,13 @@ class Ui_MainWindow(object):
         self.BatterCapacityLabel.setText(QCoreApplication.translate("MainWindow", u"Battery Capacity (AH)", None))
         self.SetBatterCapacity.setText(QCoreApplication.translate("MainWindow", u"Set Battery Capacity", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.Configuration), QCoreApplication.translate("MainWindow", u"Configuration", None))
-        self.COMConnectionFeedback.setText("")
-        self.label_3.setText(QCoreApplication.translate("MainWindow", u"Select Theme", None))
+        self.SelectThemeText.setText(QCoreApplication.translate("MainWindow", u"Select Theme", None))
         self.radioButton_light.setText(QCoreApplication.translate("MainWindow", u"Light", None))
         self.radioButton_dark.setText(QCoreApplication.translate("MainWindow", u"Dark", None))
-        self.label_2.setText(QCoreApplication.translate("MainWindow", u"Select COM port", None))
+        self.SelectCOMPort.setText(QCoreApplication.translate("MainWindow", u"Select COM port:", None))
         self.ConnectSerial.setText(QCoreApplication.translate("MainWindow", u"Connect", None))
         self.refreshCOMports.setText(QCoreApplication.translate("MainWindow", u"Refresh", None))
+        self.COMConnectionFeedback.setText("")
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.Settings), QCoreApplication.translate("MainWindow", u"Settings", None))
         self.label_5.setText(QCoreApplication.translate("MainWindow", u"Last Status:", None))
         self.debug_lable.setText("")

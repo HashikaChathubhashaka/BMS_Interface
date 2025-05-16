@@ -10,7 +10,7 @@ from PySide6.QtCore import QTimer
 
 class SerialReader:
 
-    def __init__(self, debug_label , port='COM1', baudrate=115200):
+    def __init__(self, debug_label , port='COM0', baudrate=115200):
 
         #variables for holding UI real-time values
 
@@ -27,6 +27,7 @@ class SerialReader:
 
         self.Avg_cell_voltage = None
         self.cell_voltage_different = None # calculate inside the UI ( also need to calculate inside STM)
+        self.Avg_temp = None
 
         self.timer = QTimer()
         self.timer.timeout.connect(self.read_line)  # This runs every interval
@@ -223,6 +224,10 @@ class SerialReader:
                 if line.startswith("TC:"): # Total Current
                     self.total_current = line.split(":", 1)[1]
 
+                if line.startswith("BCP:"): # Battery Capacity ( this is a constant value for that battery,
+                                                                # anyways, it is good to show in main Dashboard)
+                    self.battery_capacity = line.split(":", 1)[1]
+
                 if line.startswith("RBC:"): # Remaining battery capacity
                     self.remain_battery_capacity = line.split(":", 1)[1]
 
@@ -287,8 +292,10 @@ class SerialReader:
                     self.cell_voltage_different = round(max(all_voltages) - min(all_voltages), 4)
 
 
-
-
+            #calculating Avarage Temperature
+            if self.temps:
+                temp_floats = [float(v) for v in self.temps if v]
+                self.Avg_temp = round(sum(temp_floats) / len(temp_folats) , 4)
 
 
 

@@ -3,7 +3,7 @@ import sys
 from PySide6.QtWidgets import QApplication, QMainWindow
 from ui_form import Ui_MainWindow
 from SerialReader import SerialReader
-from DataRecorder import Recorder
+from DataRecorder import CellRecorder,TempRecorder
 from PySide6.QtGui import QPalette, QColor
 from PySide6.QtCore import Qt
 from PySide6.QtCore import QStringListModel
@@ -24,7 +24,8 @@ class MainWindow(QMainWindow):
         # Create SerialReader object to read data from Serial
         self.reader = SerialReader(self.ui.debug_lable)
 
-        self.cell_voltage_recorder = Recorder(self.reader)
+        self.cell_voltage_recorder = CellRecorder(self.reader) # To record Voltages
+        self.temp_recorder = TempRecorder(self.reader)  # To record Temps
 
 
         # Get data Button for getting constant data
@@ -43,6 +44,12 @@ class MainWindow(QMainWindow):
         #Connect Buttons for Record Cell voltages
         self.ui.StartRecordCellVoltages.clicked.connect(self.start_recording_cell_voltages)
         self.ui.StopRecordCellVoltages.clicked.connect(self.stop_recording_cell_voltages)
+
+        self.ui.StartRecordTemps.clicked.connect(self.start_recording_Temps)
+        self.ui.StopRecordTemps.clicked.connect(self.stop_recording_Temps)
+
+        self.ui.StartRecordTemps.setEnabled(False)
+        self.ui.StopRecordTemps.setEnabled(False)
 
         self.ui.StartRecordCellVoltages.setEnabled(False)
         self.ui.StopRecordCellVoltages.setEnabled(False)
@@ -95,16 +102,21 @@ class MainWindow(QMainWindow):
         self.ui.startButton.setEnabled(False)
         self.ui.stopButton.setEnabled(True)
         self.ui.StartRecordCellVoltages.setEnabled(True)
+        self.ui.StartRecordTemps.setEnabled(True)
         self.reader.start_reading();
 
 
 
 
     def disconnect_for_RT_data(self):
-        if not self.ui.StopRecordCellVoltages.isEnabled():
+        if (not self.ui.StopRecordCellVoltages.isEnabled()) and (not self.ui.StopRecordTemps.isEnabled()):
+
             self.ui.startButton.setEnabled(True)
             self.ui.stopButton.setEnabled(False)
+
+            self.ui.StartRecordTemps.setEnabled(False)
             self.ui.StartRecordCellVoltages.setEnabled(False)
+
             self.reader.stop_reading();
 
 
@@ -130,6 +142,20 @@ class MainWindow(QMainWindow):
         self.ui.StartRecordCellVoltages.setEnabled(True)
 
         self.cell_voltage_recorder.stop();
+
+
+    def start_recording_Temps(self):
+        self.ui.StartRecordTemps.setEnabled(False)
+        self.ui.StopRecordTemps.setEnabled(True)
+
+        self.temp_recorder.start();
+
+    def stop_recording_Temps(self):
+        self.ui.StartRecordTemps.setEnabled(True)
+        self.ui.StopRecordTemps.setEnabled(False)
+
+        self.temp_recorder.stop();
+
 
     def fill_port_list(self):
         ports = [port.device for port in list_ports.comports()]
@@ -178,6 +204,9 @@ class MainWindow(QMainWindow):
 
         if self.reader.cell_voltage_different:
             self.ui.CellVoltDiffLabel.setText(f"{self.reader.cell_voltage_different}")
+
+        if self.reader.Avg_temp:
+            self.ui.AvgTempLabel.setText(f"{self.reader.Avg_temp}")
 
 
         # Set C1 to C8 labels
