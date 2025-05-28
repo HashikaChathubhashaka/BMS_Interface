@@ -16,6 +16,6 @@ This is a Windows application for monitoring real-time data from a Battery Manag
 
 ## 📘 Documentation
 
-📄 [View the documentation]()
+📄 [View the documentation](https://github.com/HashikaChathubhashaka/BMS_Interface/blob/master/Document_for_BMS_Interface.pdf)
 
 
